@@ -29,7 +29,8 @@ function Collectible(props: CollectibleProps) {
 }
 
 /*number_of_physical_media_components = number of DVD/Blu-ray Discs and VHS tapes*/
-function VariableLayout({format, number_of_physical_media_components, digital_source_location}: CollectibleProps) {
+function VariableLayout({format: formatIn, number_of_physical_media_components, digital_source_location}: CollectibleProps) {
+  const format = formatIn.toLowerCase();
   const count = number_of_physical_media_components ?? 0;
   const source = digital_source_location ?? 'Unknown';
   if (format === 'dvd' || format === 'bluray') {
