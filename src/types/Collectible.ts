@@ -8,7 +8,7 @@ export type Collectible = {
   complete: boolean | null;
   image_source: string | null;
   title: string;
-  release_year: number;
+  release_year: string;
   region: string | null;
   number_of_physical_media_components: number | null;
   digital_source_location: "Amazon" | "Vudu" | "Google Play" | "Unknown" | null;
