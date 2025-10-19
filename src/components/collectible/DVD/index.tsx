@@ -1,9 +1,9 @@
 interface DVDProps {
-  numberOfDiscs: number;
+  count: number;
 }
 
-export function DVD(props: DVDProps) {
+export function DVD({count}: DVDProps) {
   return (
-    <div>This is the DVD component. This has {props.numberOfDiscs} discs</div>
+    <div>This is the DVD component. This has {count} discs</div>
   );
 }

@@ -1,58 +1,45 @@
 import { Digital } from "./Digital";
 import { DVD } from "./DVD";
 import { VHS } from "./VHS";
+import { type Collectible } from "../../types/Collectible";
 
-interface CollectibleProps {
-  format?: "show" | "movie" | "mini-series";
-  numberOfSeasons?: number | null;
-  countryOfOrigin?: string;
-  isOwned?: boolean;
-  imgSrc: string;
-  title: string;
-  releaseDate?: string;
-  region?: string;
-  regeion?: string;
-  dvd?: {
-    numberOfDiscs: number;
-  } | null;
-  vhs?: {
-    numberOfTapes: number;
-  } | null;
-  digital?: {
-    locationSource: "Amazon" | "Vudu" | "Google Play";
-  } | null;
-}
+ type CollectibleProps = Collectible;
 
 function Collectible(props: CollectibleProps) {
+  const {title, image_source, release_year, region} = props;
+  const imgSrc = image_source ?? 'https://via.placeholder.com/150';
   return (
     <div>
-      <h3>Title: {props.title}</h3>
+      <h3>Title: {title}</h3>
       <img
-        src={props.imgSrc}
+        src={imgSrc}
         onClick={() => {
-          alert(`This image's src is: ${props.imgSrc}`);
+          alert(`This image's src is: ${imgSrc}`);
         }}
       />
       <div>
-        <span>Release Date: {props.releaseDate}</span>
+        <span>Release Year: {release_year}</span>
         <br />
-        <span>Region: {props.regeion}</span>
+        <span>Region: {region}</span>
         <br />
       </div>
-      {renderVariableLayout(props)}
+      <VariableLayout {...props} />
     </div>
   );
 }
 
-function renderVariableLayout(props: CollectibleProps) {
-  if (props.dvd != null) {
-    return <DVD {...props.dvd} />;
+/*number_of_physical_media_components = number of DVD/Blu-ray Discs and VHS tapes*/
+function VariableLayout({format, number_of_physical_media_components, digital_source_location}: CollectibleProps) {
+  const count = number_of_physical_media_components ?? 0;
+  const source = digital_source_location ?? 'Unknown';
+  if (format === 'dvd' || format === 'bluray') {
+    return <DVD count={count} />;
   }
-  if (props.vhs != null) {
-    return <VHS {...props.vhs} />;
+  if (format === 'vhs') {
+    return <VHS count={count} />;
   }
-  if (props.digital != null) {
-    return <Digital {...props.digital} />;
+  if (format === 'digital') {
+    return <Digital source={source} />;
   }
   return <div>Some shit went wrong...</div>;
 }

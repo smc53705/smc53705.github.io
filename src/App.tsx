@@ -1,27 +1,19 @@
+import { useCollectibles } from "./api/collections.api";
 import logo from "./assets/react.svg";
 import Collectible from "./components/collectible";
 
 function App() {
+  const { data, isPending, error } = useCollectibles();
+  if (isPending) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
   return (
     <div>
       <div>
         Company Logo <img src={logo} />
       </div>
-      <Collectible
-        title="Being Human"
-        imgSrc="/Images/BeingHuman.jfif"
-        dvd={{ numberOfDiscs: 5 }}
-      />
-      <Collectible
-        title="Being Human"
-        imgSrc="/Images/BeingHuman.jfif"
-        digital={{ locationSource: "Amazon" }}
-      />
-      <Collectible
-        title="The Invisible Man"
-        imgSrc="/Images/InvisibleMan.jpg"
-        vhs={{ numberOfTapes: 3 }}
-      />
+      {data.map((collectible) => (
+        <Collectible key={collectible.id} {...collectible} />
+      ))}
     </div>
   );
 }

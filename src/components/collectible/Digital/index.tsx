@@ -1,11 +1,13 @@
+import { type CollectibleProps } from "..";
+
 interface DigitalProps {
-  locationSource: "Amazon" | "Vudu" | "Google Play";
+  source: CollectibleProps['digital_source_location']
 }
 
-export function Digital(props: DigitalProps) {
+export function Digital({source}: DigitalProps) {
   return (
     <div>
-      This is the DIGITAL component. This is owned on {props.locationSource}
+      This is the DIGITAL component. This is owned on {source}
     </div>
   );
 }

@@ -1,0 +1,35 @@
+{
+  "folders": [{ "name": "Database", "path": "." }],
+  "settings": {
+    "files.associations": {
+      ".eslintrc": "jsonc",
+      ".prettierrc": "jsonc",
+      ".code-workspace": "jsonc",
+      ".eslintignore": "ignore"
+    },
+
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "typescript.validate.enable": true,
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.preferences.importModuleSpecifierEnding": "minimal",
+    "typescript.preferences.includePackageJsonAutoImports": "on",
+    "typescript.suggest.autoImports": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "eslint.workingDirectories": ["."],
+
+    "[javascript][typescript][javascriptreact][typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit",
+        "source.organizeImports": "never"
+      }
+    },
+
+    // JSON files (simpler formatting only)
+    "[json][jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true
+    }
+  }
+}
