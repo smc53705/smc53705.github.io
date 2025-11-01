@@ -7,7 +7,7 @@ async function fetchCollectibles(): Promise<Collectible[]> {
     .from("Collections")
     .select("*")
     .overrideTypes<Collectible[]>();
-  
+
   if (error) {
     throw error;
   }
@@ -19,5 +19,5 @@ export function useCollectibles() {
   return useQuery({
     queryKey: ["collectibles"],
     queryFn: () => fetchCollectibles(),
-  })
+  });
 }
